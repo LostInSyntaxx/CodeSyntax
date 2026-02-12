@@ -26,7 +26,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
           <img 
             src="/two.png" 
             alt="Profile" 
-            class="relative h-48 w-48 rounded-full border-4 border-white/30 object-cover shadow-2xl transition-transform duration-500 group-hover:scale-105"
+            class="relative h-48 w-48 rounded-full  object-cover shadow-2xl transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 
