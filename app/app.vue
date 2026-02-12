@@ -22,11 +22,11 @@ import SnowOverlay from '../components/SnowOverlay.vue'
         
         <!-- Avatar -->
         <div class="relative group">
-          <div class="absolute -inset-0.5 rounded-full  opacity-75 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
+          <div class="absolute -inset-0.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 opacity-75 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
           <img 
-            src="/two.png" 
+            src="/avatar.png" 
             alt="Profile" 
-            class="relative h-48 w-48 rounded-full"
+            class="relative h-48 w-48 rounded-full border-4 border-white/30 object-cover shadow-2xl transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 
