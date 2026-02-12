@@ -1,75 +1,32 @@
-# Nuxt Minimal Starter
+# CodeSyntax
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+**เวอร์ชันที่ใช้:**
+- Nuxt: 4.2.2
+- Vue: 3.5.26
+- Vue Router: 4.6.4
+- Tailwind CSS: 6.14.0
+- Nuxt Icon: 2.2.0
 
-## Setup
+## 🚀 วิธีการใช้งาน
 
-Make sure to install dependencies:
-
+### 1. ติดตั้ง Dependencies
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+### 2. เริ่มต้นการพัฒนา
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+เปิด Browser ที่ http://localhost:3000
 
-## Production
-
-Build the application for production:
-
+### 3. สร้าง Production Build
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### 4. สร้างเว็บไซต์แบบ Static
+```bash
+npm run generate
+```
