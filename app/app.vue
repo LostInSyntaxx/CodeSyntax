@@ -92,7 +92,6 @@ import SnowOverlay from '../components/SnowOverlay.vue'
               </div>
             </div>
           </div>
-        <div>
           <!-- Development Tools -->
           <div class="mt-12">
             <h2 class="mb-6 text-2xl font-semibold underline underline-offset-4 drop-shadow-lg">
@@ -100,7 +99,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
             </h2>
             <div class="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
               <div
-                v-for="tool in ['VS Code', 'Git', 'GitHub', 'Postman', 'Docker', 'Webstorm', 'Bruno','Visual Studio', '']"
+                v-for="tool in ['VS Code', 'Git', 'GitHub', 'Postman', 'Docker', 'Webstorm', 'Bruno', 'Visual Studio', '']"
                 :key="tool" class="flex flex-col items-center space-y-2">
                 <div
                   class="h-16 w-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:scale-110 transition-transform duration-300">
@@ -109,8 +108,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
                 <span class="text-sm text-white/80">{{ tool }}</span>
               </div>
             </div>
-        </div>
-
+          </div>
         </div>
       </div>
 
@@ -118,6 +116,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
         <p>© {{ new Date().getFullYear() }} LostIn Syntaxx. All rights reserved.</p>
       </footer>
     </div>
+  </div>
 </template>
 
 
