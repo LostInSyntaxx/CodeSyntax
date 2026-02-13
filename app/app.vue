@@ -37,7 +37,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
           </h1>
           <div class="flex justify-center">
             <span class="rounded-full bg-yellow-500/20 px-4 py-1.5 text-sm font-semibold text-yellow-300 backdrop-blur-md border border-yellow-500/30">
-               Backend Developer
+               Backend Developer &nbsp;& Frontend Enthusiast
             </span>
           </div>
           <p class="mt-4 text-gray-200 text-lg drop-shadow-md max-w-lg mx-auto">
@@ -93,6 +93,10 @@ import SnowOverlay from '../components/SnowOverlay.vue'
 
       </div>
     </div>
+
+    <footer class="absolute bottom-4 w-full text-center text-sm text-white/70 z-10">
+      &copy; 2024 LostIn Syntaxx. All rights reserved.
+    </footer>
   </div>
 </template>
 
