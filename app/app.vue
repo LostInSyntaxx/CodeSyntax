@@ -74,14 +74,50 @@ import SnowOverlay from '../components/SnowOverlay.vue'
             Résumé
           </a>
         </div>
+        <div>
+          <!-- Technology Stack -->
+          <div class="mt-12">
+            <h2 class="mb-6 text-2xl font-semibold underline underline-offset-4 drop-shadow-lg">
+              Technology Stack
+            </h2>
+            <div class="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+              <div
+                v-for="tech in ['Node.js', 'TypeScript', 'PHP', 'Next.js', 'React', 'Javascript', 'Vue.js', 'Nuxt.js', 'Tailwind CSS', 'Docker', 'PostgreSQL']"
+                :key="tech" class="flex flex-col items-center space-y-2">
+                <div
+                  class="h-16 w-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:scale-110 transition-transform duration-300">
+                  <Icon :name="getTechIcon(tech)" class="h-8 w-8 text-white" />
+                </div>
+                <span class="text-sm text-white/80">{{ tech }}</span>
+              </div>
+            </div>
+          </div>
+        <div>
+          <!-- Development Tools -->
+          <div class="mt-12">
+            <h2 class="mb-6 text-2xl font-semibold underline underline-offset-4 drop-shadow-lg">
+              Development Tools
+            </h2>
+            <div class="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+              <div
+                v-for="tool in ['VS Code', 'Git', 'GitHub', 'Postman', 'Docker', 'Webstorm', 'Bruno','Visual Studio', '']"
+                :key="tool" class="flex flex-col items-center space-y-2">
+                <div
+                  class="h-16 w-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:scale-110 transition-transform duration-300">
+                  <Icon :name="getToolIcon(tool)" class="h-8 w-8 text-white" />
+                </div>
+                <span class="text-sm text-white/80">{{ tool }}</span>
+              </div>
+            </div>
+        </div>
 
+        </div>
       </div>
-    </div>
 
-    <footer class="absolute bottom-4 w-full text-center text-sm text-white/70 z-10">
-      <p>© {{ new Date().getFullYear() }} LostIn Syntaxx. All rights reserved.</p>
-    </footer>
-  </div>
+      <footer class="absolute bottom-4 w-full text-center text-sm text-white/70 z-10">
+        <p>© {{ new Date().getFullYear() }} LostIn Syntaxx. All rights reserved.</p>
+      </footer>
+    </div>
 </template>
 
 
