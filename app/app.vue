@@ -79,16 +79,12 @@ import SnowOverlay from '../components/SnowOverlay.vue'
     </div>
 
     <footer class="absolute bottom-4 w-full text-center text-sm text-white/70 z-10">
-      <p>© {{ currentYear }} LostIn Syntaxx. All rights reserved.</p>
+      <p>© {{ new Date().getFullYear() }} LostIn Syntaxx. All rights reserved.</p>
     </footer>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-const currentYear = ref(new Date().getFullYear());
 
-</script>
 
 <style>
 .animate-fade-in-up {
