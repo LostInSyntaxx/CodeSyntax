@@ -33,26 +33,6 @@ function updateElapsed() {
 onMounted(() => {
   updateElapsed()
   timer = setInterval(updateElapsed, 1000)
-
-  // ปิดการคลิกขวา
-  if (process.client) {
-    document.addEventListener('contextmenu', e => e.preventDefault())
-
-    // โค้ด minified ที่ยุ่งๆ
-    const fakeCode = `<!DOCTYPE html><html><head><meta charset="UTF-8"><script>var _0x5a3=['obfuscated','encrypted','window','document','crypto','getRandomValues','TextEncoder','btoa','atob','eval','Function'];(function(_0x4f8a2c){var _0x2b5c34=function(_0x2a89c9){while(--_0x2a89c9){_0x4f8a2c['push'](_0x4f8a2c['shift']());}};_0x2b5c34(++_0x4f8a2c['length']);}(_0x5a3,0x15f));var _0x1ab5=function(_0x4f8a2c,_0x2b5c34){_0x4f8a2c=_0x4f8a2c-0x0;var _0x35ff=_0x5a3[_0x4f8a2c];return _0x35ff;};console[_0x1ab5('0x5')]('This content is protected and encoded');const _0xf45a=['constructor','prototype','call','length','toString','MIGfMA0GCS'];eval(function(_0x1a5c7d){var _0x3c5e9e=String;_0x1a5c7d=decodeURIComponent(_0x1a5c7d);var _0x4f23bd=_0x3c5e9e['fromCharCode'];var i=0;var _0x5c75ef='';while(i<_0x1a5c7d['length']){_0x5c75ef+=_0x4f23bd['apply'](this,[_0x1a5c7d['charCodeAt'](i++)]);}return _0x5c75ef;}('52% 4d6f7a696c6c612f3520284e616d6520564255494c44204f42465553434154454429'));</script></head><body><div id="app"></div><script src="/__ENCRYPTION__/app.wasm.js"></script></body></html>`
-
-    // ตรวจสอบ DevTools
-    const devtoolsCheck = setInterval(() => {
-      const isDevToolsOpen = 
-        (window.outerHeight - window.innerHeight > 150) ||
-        (window.outerWidth - window.innerWidth > 150)
-
-      if (isDevToolsOpen) {
-        // เปลี่ยน HTML เป็นโค้ดเท็จ
-        document.documentElement.innerHTML = fakeCode
-      }
-    }, 100)
-  }
 })
 
 onUnmounted(() => {
