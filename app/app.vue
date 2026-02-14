@@ -38,6 +38,26 @@ onUnmounted(() => {
   if (timer) clearInterval(timer)
 })
 
+const techStack = [
+  { name: 'JavaScript', icon: 'mdi:language-javascript' },
+  { name: 'TypeScript', icon: 'mdi:language-typescript' },
+  { name: 'Node.js', icon: 'mdi:nodejs' },
+  { name: 'React', icon: 'mdi:react' },
+  { name: 'Nuxt', icon: 'simple-icons:nuxtdotjs' },
+  { name: 'Tailwind CSS', icon: 'mdi:tailwind' },
+  { name: 'PHP', icon: 'mdi:language-php' },
+  { name: 'Swift', icon: 'simple-icons:swift' },
+  { name: 'Vercel', icon: 'simple-icons:vercel' },
+  { name: 'GitHub', icon: 'mdi:github' },
+]
+
+const devTools = [
+  { name: 'VS Code', icon: 'simple-icons:visualstudiocode' },
+  { name: 'WebStorm', icon: 'simple-icons:webstorm' },
+  { name: 'Neovim', icon: 'simple-icons:neovim' },
+  { name: 'Linux', icon: 'mdi:linux' },
+  { name: 'Windows', icon: 'mdi:microsoft-windows' },
+]
 </script>
 
 <template>
@@ -155,59 +175,40 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <!-- ===== PROJECTS SECTION ===== -->
+        <!-- ===== TECH STACK SECTION ===== -->
         <section class="relative z-10 px-6 py-20 md:px-12">
-          <div class="mx-auto max-w-5xl">
+          <div class="mx-auto max-w-3xl space-y-12">
 
-            <!-- Section Header -->
-            <div class="mb-12 text-center">
-              <h2 class="anim-section-title text-2xl font-bold uppercase tracking-widest md:text-4xl">
-                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
-                  My Projects
-                </span>
-              </h2>
-              <div class="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
+            <!-- Technology Stack -->
+            <div>
+              <div class="anim-section-title mb-6 flex items-center gap-3">
+                <span class="text-2xl">🎨</span>
+                <h2 class="text-xl font-bold text-white md:text-2xl">Technology Stack</h2>
+              </div>
+              <div class="h-px w-full bg-gradient-to-r from-white/20 via-white/10 to-transparent mb-8"></div>
+              <div class="flex flex-wrap justify-center gap-4">
+                <div v-for="(tech, i) in techStack" :key="tech.name"
+                  class="anim-project-card tech-icon group relative flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/10 hover:-translate-y-1"
+                  :style="{ '--card-i': i }" :title="tech.name">
+                  <Icon :name="tech.icon" class="h-7 w-7 text-gray-300 transition-colors group-hover:text-white" />
+                </div>
+              </div>
             </div>
 
-            <!-- Project Cards Grid -->
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <a v-for="(project, i) in projects" :key="i" :href="project.link" target="_blank"
-                class="anim-project-card project-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-lg transition-all duration-500 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl hover:-translate-y-2"
-                :style="{ '--card-i': i }">
-                <!-- Gradient accent top -->
-                <div
-                  :class="['absolute inset-x-0 top-0 h-1 bg-gradient-to-r opacity-60 transition-opacity duration-300 group-hover:opacity-100', project.color]">
+            <!-- Development Tools -->
+            <div>
+              <div class="anim-section-title mb-6 flex items-center gap-3">
+                <span class="text-2xl">❄️</span>
+                <h2 class="text-xl font-bold text-white md:text-2xl">Development Tools</h2>
+              </div>
+              <div class="h-px w-full bg-gradient-to-r from-white/20 via-white/10 to-transparent mb-8"></div>
+              <div class="flex flex-wrap justify-center gap-4">
+                <div v-for="(tool, i) in devTools" :key="tool.name"
+                  class="anim-project-card tech-icon group relative flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-cyan-500/10 hover:-translate-y-1"
+                  :style="{ '--card-i': i + techStack.length }" :title="tool.name">
+                  <Icon :name="tool.icon" class="h-7 w-7 text-gray-300 transition-colors group-hover:text-white" />
                 </div>
-
-                <!-- Icon -->
-                <div :class="['mb-4 inline-flex rounded-xl bg-gradient-to-br p-3 shadow-lg', project.color]">
-                  <Icon :name="project.icon" class="h-6 w-6 text-white" />
-                </div>
-
-                <!-- Title -->
-                <h3 class="mb-2 text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
-                  {{ project.title }}
-                </h3>
-
-                <!-- Description -->
-                <p class="mb-4 text-sm leading-relaxed text-gray-400">
-                  {{ project.description }}
-                </p>
-
-                <!-- Tech Tags -->
-                <div class="flex flex-wrap gap-2">
-                  <span v-for="tech in project.tech" :key="tech"
-                    class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-gray-300 border border-white/5">
-                    {{ tech }}
-                  </span>
-                </div>
-
-                <!-- Arrow -->
-                <div
-                  class="absolute bottom-5 right-5 text-white/20 transition-all duration-300 group-hover:text-white/60 group-hover:translate-x-1">
-                  <Icon name="lucide:arrow-up-right" class="h-5 w-5" />
-                </div>
-              </a>
+              </div>
             </div>
 
           </div>
