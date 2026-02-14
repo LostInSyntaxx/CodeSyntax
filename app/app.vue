@@ -1,9 +1,21 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import SnowOverlay from '../components/SnowOverlay.vue'
+import PreloaderScreen from '../components/PreloaderScreen.vue'
+
+const loading = ref(true)
+
+function onPreloaderDone() {
+  loading.value = false
+}
 </script>
 
 <template>
-  <div class="relative min-h-screen w-full overflow-hidden font-['Kanit'] text-white">
+  <!-- ===== PRELOADER ===== -->
+  <PreloaderScreen v-if="loading" @done="onPreloaderDone" />
+
+  <!-- ===== MAIN SITE ===== -->
+  <div v-else class="relative min-h-screen w-full overflow-hidden font-['Kanit'] text-white">
     <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/background.jpg');">
       <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
     </div>
@@ -33,7 +45,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
           </h1>
           <div class="flex justify-center">
             <span
-              class="anim-badge rounded-full bg-yellow-500/20 px-4 py-1.5 text-sm font-semibold text-yellow-300 backdrop-blur-md border border-yellow-500/30">
+              class="anim-badge relative rounded-full bg-yellow-500/20 px-4 py-1.5 text-sm font-semibold text-yellow-300 backdrop-blur-md border border-yellow-500/30">
               Backend Developer &nbsp;& Frontend Enthusiast
             </span>
           </div>
@@ -94,7 +106,11 @@ import SnowOverlay from '../components/SnowOverlay.vue'
 
 
 <style>
-/* ===== Base: hide elements before animation ===== */
+/* ============================================================
+   MAIN SITE ENTRANCE ANIMATIONS
+   ============================================================ */
+
+/* Base: hide elements before animation */
 .anim-avatar,
 .anim-name,
 .anim-badge,
@@ -105,7 +121,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   animation-fill-mode: both;
 }
 
-/* ===== 1. Avatar — scale in + continuous glow pulse ===== */
+/* 1. Avatar — scale in + continuous glow pulse */
 .anim-avatar {
   animation: scaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
 }
@@ -122,7 +138,6 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   }
 }
 
-/* Glow ring pulse on the avatar border */
 .anim-glow-ring {
   animation: pulseGlow 3s ease-in-out infinite;
 }
@@ -141,7 +156,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   }
 }
 
-/* ===== 2. Name — slide down + fade ===== */
+/* 2. Name — slide down + blur fade */
 .anim-name {
   animation: slideFadeDown 0.7s ease-out 0.4s both;
 }
@@ -160,7 +175,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   }
 }
 
-/* ===== 3. Badge — slide up + shimmer ===== */
+/* 3. Badge — slide up + shimmer */
 .anim-badge {
   animation: slideUp 0.6s ease-out 0.65s both;
   background-size: 200% 100%;
@@ -178,18 +193,12 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   }
 }
 
-/* Shimmer sweep across badge after entrance */
 .anim-badge::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(110deg,
-      transparent 20%,
-      rgba(255, 255, 255, 0.12) 40%,
-      rgba(255, 255, 255, 0.18) 50%,
-      rgba(255, 255, 255, 0.12) 60%,
-      transparent 80%);
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0.12) 60%, transparent 80%);
   background-size: 250% 100%;
   animation: shimmer 3s ease-in-out 1.2s infinite;
   pointer-events: none;
@@ -205,7 +214,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   }
 }
 
-/* ===== 4. Description — blur to clear ===== */
+/* 4. Description — blur to clear */
 .anim-desc {
   animation: blurIn 0.6s ease-out 0.85s both;
 }
@@ -224,7 +233,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   }
 }
 
-/* ===== 5. Buttons — staggered pop-in ===== */
+/* 5. Buttons — staggered pop-in */
 .anim-btn {
   animation: popIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   animation-delay: calc(1s + var(--btn-i) * 0.1s);
@@ -242,7 +251,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   }
 }
 
-/* ===== Button Hover Micro-Interaction ===== */
+/* Button Hover */
 .btn-hover {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -257,7 +266,7 @@ import SnowOverlay from '../components/SnowOverlay.vue'
   transition-duration: 0.1s;
 }
 
-/* ===== 6. Footer — gentle rise ===== */
+/* 6. Footer — gentle rise */
 .anim-footer {
   animation: fadeRise 0.6s ease-out 1.6s both;
 }
