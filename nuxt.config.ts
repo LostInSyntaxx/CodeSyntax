@@ -1,8 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/icon'],
+  
+  plugins: ['~/plugins/fake-source.client.ts'],
+  
+  sourcemap: {
+    server: false,
+    client: false,
+  },
+  
   runtimeConfig: {
     spotify: {
       clientId: process.env.SPOTIFY_CLIENT_ID || '',
