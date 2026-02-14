@@ -53,9 +53,6 @@ onMounted(() => {
                 <span class="preloader__dot" style="--dot-i: 1" />
                 <span class="preloader__dot" style="--dot-i: 2" />
             </div>
-
-            <!-- Loading text -->
-            <p class="preloader__text">Loading experience...</p>
         </div>
     </div>
 </template>
