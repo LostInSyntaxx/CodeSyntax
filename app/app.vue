@@ -104,7 +104,7 @@ const devTools = [
               <div class="flex justify-center">
                 <span
                   class="anim-badge relative rounded-full bg-yellow-500/20 px-4 py-1.5 text-sm font-semibold text-yellow-300 backdrop-blur-md border border-yellow-500/30">
-                  Backend Developer &nbsp;& Frontend Enthusiast
+                  Backend Developer
                 </span>
               </div>
               <p class="anim-desc mt-4 text-gray-200 text-lg drop-shadow-md max-w-lg mx-auto">
