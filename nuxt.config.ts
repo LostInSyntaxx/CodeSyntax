@@ -3,6 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/icon'],
+  runtimeConfig: {
+    spotify: {
+      clientId: process.env.SPOTIFY_CLIENT_ID || '',
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET || '',
+      refreshToken: process.env.SPOTIFY_REFRESH_TOKEN || '',
+    },
+  },
   app: {
     head: {
       title: 'LostInSyntaxx',
