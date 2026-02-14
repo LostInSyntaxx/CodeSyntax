@@ -132,6 +132,9 @@ const devTools = [
                 </div>
                 <span class="text-gray-400">ago</span>
               </div>
+
+              <!-- Spotify Now Playing -->
+              <SpotifyNowPlaying />
             </div>
 
             <!-- Buttons -->
@@ -279,7 +282,8 @@ body {
 .anim-btn,
 .anim-footer,
 .anim-section-title,
-.anim-project-card {
+.anim-project-card,
+.anim-spotify {
   opacity: 0;
   animation-fill-mode: both;
 }
@@ -385,6 +389,11 @@ body {
 /* 4.5. Counter — fade in after description */
 .anim-counter {
   animation: blurIn 0.6s ease-out 0.95s both;
+}
+
+/* 4.6. Spotify — fade in after counter */
+.anim-spotify {
+  animation: blurIn 0.6s ease-out 1.05s both;
 }
 
 @keyframes blurIn {
