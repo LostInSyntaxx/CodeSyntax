@@ -4,8 +4,6 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/icon'],
   
-  plugins: ['~/plugins/fake-source.client.ts'],
-  
   sourcemap: {
     server: false,
     client: false,
