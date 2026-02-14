@@ -40,7 +40,6 @@ function startProgressTick(startMs: number, durationMs: number) {
         if (currentMs >= durationMs) {
             currentMs = durationMs
             if (progressTimer) clearInterval(progressTimer)
-            // Fetch new data since song probably changed
             fetchNowPlaying()
         }
         progress.value = (currentMs / durationMs) * 100
@@ -67,82 +66,148 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="anim-spotify mx-auto mt-6 w-full max-w-sm">
-        <!-- Listening -->
+    <div class="anim-spotify mx-auto mt-8 w-full max-w-md">
+
+        <!-- Now Playing Card -->
         <a v-if="spotify.isPlaying && spotify.title" :href="spotify.songUrl" target="_blank"
-            class="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-lg transition-all duration-300 hover:border-green-500/30 hover:bg-white/10">
-            <!-- Album Art -->
-            <div class="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl shadow-lg">
-                <img :src="spotify.albumArt" :alt="spotify.album" class="h-full w-full object-cover" />
-                <div
-                    class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
-                    <Icon name="mdi:spotify" class="h-6 w-6 text-green-400" />
+            class="spotify-card group relative flex items-center gap-5 overflow-hidden rounded-2xl border border-white/[0.08] p-4 transition-all duration-500 hover:border-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/5">
+            <!-- Animated background glow -->
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-transparent to-emerald-600/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+            </div>
+            <div
+                class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-emerald-500/10 blur-3xl transition-all duration-700 group-hover:bg-emerald-500/20">
+            </div>
+
+            <!-- Album Art with vinyl effect -->
+            <div class="relative flex-shrink-0">
+                <div class="vinyl-container relative h-16 w-16">
+                    <!-- Vinyl disc behind album art -->
+                    <div
+                        class="vinyl-disc absolute -right-2 top-1/2 -translate-y-1/2 h-14 w-14 rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-lg">
+                        <div class="absolute inset-[6px] rounded-full border border-white/5"></div>
+                        <div class="absolute inset-[10px] rounded-full border border-white/[0.03]"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="h-2 w-2 rounded-full bg-gray-600"></div>
+                        </div>
+                    </div>
+                    <!-- Album cover -->
+                    <img :src="spotify.albumArt" :alt="spotify.album"
+                        class="relative z-10 h-16 w-16 rounded-xl object-cover shadow-2xl ring-1 ring-white/10 transition-transform duration-500 group-hover:scale-105" />
                 </div>
             </div>
 
             <!-- Song Info -->
-            <div class="min-w-0 flex-1">
-                <div class="flex items-center gap-2 mb-0.5">
-                    <div class="spotify-bars flex items-end gap-[2px]">
+            <div class="relative z-10 min-w-0 flex-1">
+                <!-- Status badge -->
+                <div class="mb-1.5 flex items-center gap-2">
+                    <Icon name="mdi:spotify" class="h-4 w-4 text-[#1DB954]" />
+                    <div class="spotify-bars flex items-end gap-[3px]">
+                        <span class="bar"></span>
                         <span class="bar"></span>
                         <span class="bar"></span>
                         <span class="bar"></span>
                     </div>
-                    <span class="text-[10px] font-semibold uppercase tracking-wider text-green-400">Now Playing</span>
+                    <span class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#1DB954]">Now Playing</span>
                 </div>
-                <p class="truncate text-sm font-semibold text-white">{{ spotify.title }}</p>
-                <p class="truncate text-xs text-gray-400">{{ spotify.artist }}</p>
+
+                <!-- Track name -->
+                <p class="truncate text-sm font-bold text-white/95 transition-colors group-hover:text-white">
+                    {{ spotify.title }}
+                </p>
+
+                <!-- Artist -->
+                <p class="truncate text-xs text-white/40 mt-0.5">
+                    {{ spotify.artist }}
+                </p>
 
                 <!-- Progress Bar -->
-                <div class="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10">
-                    <div class="h-full rounded-full bg-green-500 transition-all duration-1000 ease-linear"
-                        :style="{ width: progress + '%' }"></div>
+                <div class="mt-2.5 flex items-center gap-2">
+                    <div class="h-[3px] flex-1 overflow-hidden rounded-full bg-white/[0.06]">
+                        <div class="progress-bar h-full rounded-full transition-all duration-1000 ease-linear"
+                            :style="{ width: progress + '%' }"></div>
+                    </div>
                 </div>
             </div>
         </a>
 
-        <!-- Not Listening -->
-        <div v-else class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-lg">
-            <Icon name="mdi:spotify" class="h-6 w-6 text-gray-500" />
-            <span class="text-sm text-gray-500">Not listening to Spotify</span>
+        <!-- Not Listening State -->
+        <div v-else
+            class="flex items-center justify-center gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-5 py-3.5 backdrop-blur-sm">
+            <Icon name="mdi:spotify" class="h-5 w-5 text-white/20" />
+            <span class="text-xs font-medium tracking-wide text-white/25">Not playing anything on Spotify</span>
         </div>
     </div>
 </template>
 
 <style scoped>
-/* Spotify equalizer animation */
+/* Card glass background */
+.spotify-card {
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(20px);
+}
+
+/* Vinyl spin animation */
+.vinyl-disc {
+    animation: vinylSpin 3s linear infinite;
+}
+
+@keyframes vinylSpin {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Progress bar gradient */
+.progress-bar {
+    background: linear-gradient(90deg, #1DB954, #1ed760);
+    box-shadow: 0 0 8px rgba(29, 185, 84, 0.4);
+}
+
+/* Equalizer bars */
 .spotify-bars {
     height: 12px;
 }
 
 .bar {
     display: inline-block;
-    width: 3px;
-    background: #1db954;
+    width: 2.5px;
+    background: #1DB954;
     border-radius: 2px;
-    animation: barBounce 1.2s ease-in-out infinite;
+    animation: barBounce 1s ease-in-out infinite;
 }
 
 .bar:nth-child(1) {
-    height: 6px;
+    height: 4px;
     animation-delay: 0s;
 }
 
 .bar:nth-child(2) {
-    height: 10px;
-    animation-delay: 0.2s;
+    height: 8px;
+    animation-delay: 0.15s;
 }
 
 .bar:nth-child(3) {
-    height: 4px;
-    animation-delay: 0.4s;
+    height: 5px;
+    animation-delay: 0.3s;
+}
+
+.bar:nth-child(4) {
+    height: 10px;
+    animation-delay: 0.45s;
 }
 
 @keyframes barBounce {
 
     0%,
     100% {
-        transform: scaleY(0.4);
+        transform: scaleY(0.3);
     }
 
     50% {
