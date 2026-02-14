@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import SnowOverlay from '../components/SnowOverlay.vue'
 import PreloaderScreen from '../components/PreloaderScreen.vue'
+import SpotifyNowPlaying from '../components/SpotifyNowPlaying.vue'
 
 const loading = ref(true)
 
