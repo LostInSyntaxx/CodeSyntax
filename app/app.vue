@@ -186,7 +186,6 @@ const devTools = [
             <!-- Technology Stack -->
             <div>
               <div class="anim-section-title mb-6 flex items-center gap-3">
-                <span class="text-2xl">🎨</span>
                 <h2 class="text-xl font-bold text-white md:text-2xl">Technology Stack</h2>
               </div>
               <div class="h-px w-full bg-gradient-to-r from-white/20 via-white/10 to-transparent mb-8"></div>
@@ -202,7 +201,6 @@ const devTools = [
             <!-- Development Tools -->
             <div>
               <div class="anim-section-title mb-6 flex items-center gap-3">
-                <span class="text-2xl">❄️</span>
                 <h2 class="text-xl font-bold text-white md:text-2xl">Development Tools</h2>
               </div>
               <div class="h-px w-full bg-gradient-to-r from-white/20 via-white/10 to-transparent mb-8"></div>
